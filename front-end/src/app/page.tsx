@@ -14,6 +14,14 @@ export default function HomePage() {
     Sign In
   </button>
 </nav>
+  <section className="px-8 py-16">
+  <h2 className="text-4xl font-bold mb-4">
+    Find Work That Fits Your Life
+  </h2>
+  <p className="text-gray-500 mb-6">
+    Discover remote, hybrid, and on-site opportunities.
+  </p>
+</section>
     </div>
   );
 }
