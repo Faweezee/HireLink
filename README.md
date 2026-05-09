@@ -16,6 +16,12 @@ HireLink is a full-stack job board platform designed to connect job seekers with
 - Tailwind CSS
 - JavaScript
 
+###Frontend Status
+-Project initialized
+-ESLint configured
+-Next.js base configuration completed
+-UI pages not yet implemented
+
 
 ### Backend
 - Node.js
