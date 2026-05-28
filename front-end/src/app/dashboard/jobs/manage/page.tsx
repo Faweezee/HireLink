@@ -5,7 +5,8 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "@/app/hooks/useAuth";
 import { apiService } from "@/lib/api-service";
-import { Loader2, Pencil, Trash2, Users } from "lucide-react";
+import { Loader2, Pencil, Trash2, Users , Briefcase} from "lucide-react";
+import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
 
 interface Job {
   id: number;
@@ -82,16 +83,19 @@ const ManageJobsPage = () => {
       <div className="max-w-5xl mx-auto">
 
         {/* HEADER */}
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-bold">Manage Jobs</h1>
-
-          <Link
-            href="/dashboard/jobs/new"
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
-          >
-            Post New Job
-          </Link>
-        </div>
+        <DashboardHeader
+          icon={<Briefcase className="w-8 h-8 text-blue-600" />}
+          title="Manage Jobs"
+          subtitle="Manage your posted jobs"
+          action={
+            <Link
+              href="/dashboard/jobs/new"
+              className="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-600 text-white px-5 py-3 rounded-xl font-medium transition"
+            >
+              Post New Job
+            </Link>
+          }
+        />
 
         {loading ? (
           <div className="flex justify-center py-20">
@@ -107,7 +111,7 @@ const ManageJobsPage = () => {
             {jobs.map((job) => (
               <div
                 key={job.id}
-                className="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center"
+                className="bg-white p-4 rounded-xl shadow-sm  flex justify-between items-center hover:border"
               >
 
                 <div>
@@ -124,24 +128,16 @@ const ManageJobsPage = () => {
 
                   <Link
                     href={`/dashboard/jobs/${job.id}/applicants`}
-                    className="flex items-center gap-1 text-sm text-green-600 hover:underline"
+                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-green-50 text-green-700 hover:bg-green-100 transition font-medium text-sm border border-green-200"
                   >
                     <Users size={16} />
                     Applicants
                   </Link>
 
-                  <Link
-                    href={`/dashboard/jobs/${job.id}/edit`}
-                    className="flex items-center gap-1 text-sm text-blue-600 hover:underline"
-                  >
-                    <Pencil size={16} />
-                    Edit
-                  </Link>
-
                   <button
                     onClick={() => handleDelete(job.id)}
                     disabled={deletingId === job.id}
-                    className="flex items-center gap-1 text-sm text-red-600 hover:underline"
+                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-red-50 text-red-700 hover:bg-red-100 transition font-medium text-sm border border-red-200 disabled:text-red-300 disabled:bg-red-50 disabled:cursor-not-allowed"
                   >
                     {deletingId === job.id ? (
                       <Loader2 className="w-4 h-4 animate-spin" />
