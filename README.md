@@ -5,8 +5,7 @@ A full-stack Job Board Platform built for CSC 202. This platform connects employ
 ---
 
 ##  Links
-- Live App: Coming Soon
-- Presentation Slides: Coming Soon
+- Live App: [HireLink](https://hire-link-eta.vercel.app/)
 
 ---
 
