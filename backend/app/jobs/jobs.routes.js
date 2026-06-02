@@ -5,18 +5,28 @@ import {
   deleteJob,
   getJobs,
   getJob,
+  searchJobsList,
+  getEmployerDashboardStats,
 } from "./jobs.controller.js";
 import { protect, restrictTo } from "../core/middleware.js";
+import {
+  postJobValidator,
+  updateJobValidator,
+  searchJobsValidator,
+  paginationQueryValidator,
+} from "../core/validators.js";
 
 const router = express.Router();
 
 // ─── General Routes ───────────────────────────────────────────
-router.get("/", protect, getJobs);
+router.get("/search", protect, searchJobsValidator, paginationQueryValidator, searchJobsList);
+router.get("/", protect, paginationQueryValidator, getJobs);
 router.get("/:id", protect, getJob);
 
 // ─── Employer Only Routes ─────────────────────────────────────
-router.post("/", protect, restrictTo("employer"), postJob);
-router.put("/:id", protect, restrictTo("employer"), updateJob);
+router.get("/employer/stats", protect, restrictTo("employer"), getEmployerDashboardStats);
+router.post("/", protect, restrictTo("employer"), postJobValidator, postJob);
+router.put("/:id", protect, restrictTo("employer"), updateJobValidator, updateJob);
 router.delete("/:id", protect, restrictTo("employer"), deleteJob);
 
 export default router;
