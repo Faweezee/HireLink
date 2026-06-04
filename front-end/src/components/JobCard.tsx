@@ -133,12 +133,12 @@ export default function JobCard({
       <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-300 border border-slate-100 hover:border-slate-200/80 flex flex-col h-full -translate-y-0 hover:-translate-y-1">
         
         {/* Header */}
-        <div className="flex justify-between items-start mb-4">
-          <div className="flex gap-4 items-center min-w-0">
+        <div className="flex justify-between items-start mb-4 gap-2">
+          <div className="flex gap-3 sm:gap-4 items-center min-w-0 flex-1">
             <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-xl font-bold border shrink-0 ${avatarColor}`}>
               {initial}
             </div>
-            <div className="min-w-0">
+            <div className="min-w-0 flex-1">
               <h3 className="text-[1.05rem] font-bold text-slate-900 group-hover:text-indigo-600 transition-colors truncate leading-snug">{title}</h3>
               <p className="text-slate-500 text-sm mt-0.5 truncate font-medium">{companyName}</p>
             </div>
@@ -172,19 +172,19 @@ export default function JobCard({
 
         {/* Footer info (Tags & Time) */}
         <div className="flex items-center justify-between mt-auto pt-5 border-t border-slate-50 gap-2 flex-wrap sm:flex-nowrap">
-          <div className="flex items-center gap-2 min-w-0">
-            <span className="bg-slate-100 text-slate-600 text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-md font-bold">
+          <div className="flex items-center gap-2 min-w-0 flex-wrap">
+            <span className="bg-slate-100 text-slate-600 text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-md font-bold truncate max-w-[120px] sm:max-w-none">
               {displayType.split('•')[0].trim()}
             </span>
             {tags && tags.length > 0 && (
-              <span className="bg-indigo-50 text-indigo-700 text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-md font-bold hidden sm:inline-block">
+              <span className="bg-indigo-50 text-indigo-700 text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-md font-bold hidden sm:inline-block truncate max-w-[120px] sm:max-w-none">
                 {tags[0]}
               </span>
             )}
           </div>
-          <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-400">
-            <Clock size={13} strokeWidth={2.5} />
-            {daysAgoText}
+          <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-400 shrink-0">
+            <Clock size={13} strokeWidth={2.5} className="shrink-0" />
+            <span className="truncate">{daysAgoText}</span>
           </div>
         </div>
       </div>
