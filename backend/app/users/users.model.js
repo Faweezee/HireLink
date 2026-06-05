@@ -1,5 +1,18 @@
 import pool from "../core/db.js";
 
+// Get system-wide stats for admin dashboard
+export const getSystemStatsFromDB = async () => {
+  const usersResult = await pool.query(`SELECT COUNT(*)::int as total_users FROM users`);
+  const jobsResult = await pool.query(`SELECT COUNT(*)::int as active_jobs FROM jobs`);
+  const appsResult = await pool.query(`SELECT COUNT(*)::int as total_applications FROM applications`);
+
+  return {
+    totalUsers: usersResult.rows[0].total_users,
+    activeJobs: jobsResult.rows[0].active_jobs,
+    totalApplications: appsResult.rows[0].total_applications,
+  };
+};
+
 // ─── User Queries ───────────────────────────────────────────
 
 // Save a new user to the database
@@ -31,12 +44,20 @@ export const findUserById = async (id) => {
   return result.rows[0];
 };
 
-// Get all users (admin only)
-export const getAllUsers = async () => {
+// Get all users (admin only, paginated)
+export const getAllUsers = async ({ limit, offset }) => {
+  const countResult = await pool.query(`SELECT COUNT(*)::int AS total FROM users`);
+  const total = countResult.rows[0].total;
+
   const result = await pool.query(
-    `SELECT id, name, email, role, created_at FROM users ORDER BY created_at DESC`
+    `SELECT id, name, email, role, created_at
+     FROM users
+     ORDER BY created_at DESC
+     LIMIT $1 OFFSET $2`,
+    [limit, offset]
   );
-  return result.rows;
+
+  return { rows: result.rows, total };
 };
 
 // Update user name or email
@@ -134,4 +155,52 @@ export const updateEmployerProfile = async (userId, fields) => {
     [company_name, company_description, industry, website, location, userId]
   );
   return result.rows[0];
+};
+
+// ─── Password Queries ─────────────────────────────────────────
+
+// Update a user's password
+export const updateUserPassword = async (id, hashedPassword) => {
+  const result = await pool.query(
+    `UPDATE users SET password = $1 WHERE id = $2
+     RETURNING id, name, email, role, created_at`,
+    [hashedPassword, id]
+  );
+  return result.rows[0];
+};
+
+// ─── Password Reset Token Queries ────────────────────────────
+
+// Save a reset token
+export const saveResetToken = async (userId, token, expiresAt) => {
+  // Delete any existing token for this user first
+  await pool.query(
+    `DELETE FROM password_reset_tokens WHERE user_id = $1`,
+    [userId]
+  );
+
+  const result = await pool.query(
+    `INSERT INTO password_reset_tokens (user_id, token, expires_at)
+     VALUES ($1, $2, $3)
+     RETURNING *`,
+    [userId, token, expiresAt]
+  );
+  return result.rows[0];
+};
+
+// Find a reset token
+export const findResetToken = async (token) => {
+  const result = await pool.query(
+    `SELECT * FROM password_reset_tokens WHERE token = $1`,
+    [token]
+  );
+  return result.rows[0];
+};
+
+// Delete a reset token after it has been used
+export const deleteResetToken = async (token) => {
+  await pool.query(
+    `DELETE FROM password_reset_tokens WHERE token = $1`,
+    [token]
+  );
 };
