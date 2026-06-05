@@ -1,148 +1,45 @@
-# HireLink - Job Board Platform - Team 2
+# HireLink 💼
 
-A full-stack Job Board Platform built for CSC 202. This platform connects employers with job seekers.
+**HireLink** is a full-stack Job Board Platform developedby group 2 . The platform connects employers with job seekers through a modern, responsive, and user-friendly web application.
 
----
-
-##  Links
-- Live App: [HireLink](https://hire-link-eta.vercel.app/)
-
----
-
-##  Tech Stack
-- Frontend: React.js
-- Backend: Node.js, Express.js, TypeScript
-- Database: MongoDB
-
----
-
-##  Team Members
-
-| Name | Role |
-|------|------|
-| Fawaz Salimanu | Team Lead |
-| Jason | Backend |
-| David Alamutu | Backend |
-| Hillary Ilona | Frontend |
-| Muhammad Nasiru | Frontend |
-| Anthony Okpuruka | DevOps |
-| Tomba Bobmanuel | QA / Documentation |
-| Timilehin Adeyoyin | QA / Documentation |
-
----
-
-## Setup Instructions
-To be added.
-
----
-
-##  API Documentation
-To be added.
-
----
-
-##  Testing
-To be added.
-
-##  API Documentation
-
-### Job Routes
-
-GET /api/jobs  
-Fetch all jobs
-
-GET /api/jobs/:id  
-Fetch single job
-
-POST /api/jobs  
-Create job
-
-PUT /api/jobs/:id  
-Update job
-
-DELETE /api/jobs/:id  
-Delete job
-
----
-
-### Auth Routes
-
-POST /api/users/register  
-Register user
-
-POST /api/users/login  
-Login user
-
----
-
-### Application Routes
-
-POST /api/applications  
-Apply to job
-
-##  Pages
-
-### Home Page
-- Search bar
-- Recently added jobs
-
-### Job Listings
-- Filter by category
-- Filter by location
-
-### Job Details
-- Full job description
-- Apply button
-
-### Employer Dashboard
-- View posted jobs
-- View applications
-
-### Post Job
-- Create job form
-
-### Login/Register
-- User authentication
-BUG:
-POST /api/jobs crashes if location field is missing.
-
-Expected:
-Validation error message.
-
-Actual:
-Server crashes.
-##  Screenshots
-
-(Add screenshots here)
-##  Live Demo
-
-Frontend: https://...
-Backend: https://...
+Employers can create accounts, post job opportunities, and manage applications, while job seekers can browse available positions, search for relevant jobs, and apply directly through the platform.
 
 
+## 📖 Project Overview
 
-# HireLink
-HireLink is a full-stack job board platform designed to connect employers with job seekers efficiently. Employers can post job openings, while job seekers can browse listings and apply for positions.
-This project was developed as part of the CSC 202 - Computer Programming II group project.
+The goal of HireLink is to simplify the recruitment process by providing a centralized platform where employers and job seekers can interact efficiently.
+
+### Objectives
+
+- Provide an easy-to-use job search platform.
+- Enable employers to create and manage job listings.
+- Allow job seekers to apply for available opportunities.
+- Demonstrate the implementation of a full-stack web application using modern technologies.
 
 ## Features
-
-- User Authentication
-- Job Listings
-- Job Applications
-- Employer Dashboard
-- Search and Filtering
-- Responsive User Interface
-- REST API Integration
+- User authentication (Job seekers & employers)
+- Job posting and management
+- Advanced job search and filtering
+- Dashboard for applicants and recruiters
+- Responsive PC design
 
 ## Tech Stack
-
 ### Frontend
-- React.js
-- Material UI
+- Next.js
+- TypeScript
+- Tailwind CSS
+- JavaScript
+
+###Frontend Status
+-Project initialized
+-ESLint configured
+-Next.js base configuration completed
+-UI pages not yet implemented
+
 
 ### Backend
 - Node.js
 - Express.js
 - MongoDB
 
+## Project Structure

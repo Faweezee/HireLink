@@ -1,6 +1,6 @@
 ---
 
-## 🚧 Project Status
+##  Project Status
 
 HireLink is currently in early development phase.
 
@@ -20,8 +20,7 @@ HireLink is currently in early development phase.
 - Employer dashboard
 - Job application system
 
----
 
-## 🤝 Contributors
+##  Contributors
 
 Team 2 CSC 202 Project
